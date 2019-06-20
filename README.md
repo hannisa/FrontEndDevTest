@@ -22,4 +22,4 @@ dari starwars 1 sampai starwars 7.
 2. Buka file index.html menggunakan browser apa saja
 3. Sekarang anda dapat melihat informasi lengkap mengenai Starwars 1 - Starwars 7
 
-*** SELAMAT MEMBACA :D ***
+
