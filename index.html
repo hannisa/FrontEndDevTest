@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<title>Starwars Challenge</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+</head>
+<body>
+	<div id="app">
+		<div class='container-fluid-nav text-center'>
+			<nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top">
+				<div class="container-fluid">
+					<ul class="nav navbar-nav pull-xs-left">
+					</ul>
+					<ul class="nav navbar-nav">
+						<p class="text-xl-left"><b>STARWARS LIST</b></p>
+					</ul>
+					<ul class="nav navbar-nav pull-xs-right">
+					</ul>
+				</div>
+			</nav>
+		</div> <br> <br> <br>
+		<div class='container-fluid'>
+			<div class="row">
+				<div class="col-md-12" v-for="(value, index) in starwars">
+					<div class="card">
+						<div class="card-body">
+							<a class="card-title"><b>StarWars {{starwars[index]['episode_id']}} {{starwars[index]['title']}}</b></a>
+								<div class="table-responsive">
+									<img class="image" :src="starwars[index]['image']">
+									<table class="table table-borderless">
+										<tbody>
+											<tr>
+												<td><b>Created</b></td>
+												<td>{{ starwars[index]['created'] }}</td>
+											</tr>
+											<tr>
+												<td><b>Director</b></td>
+												<td>{{ starwars[index]['director'] }}</td>
+											</tr>
+											<tr>
+												<td><b>Opening Crawl</b></td>
+												<td>{{ starwars[index]['opening_crawl'] }}</td>
+											</tr>
+											<tr>
+												<td><b>Episode</b></td>
+												<td>{{ starwars[index]['episode_id'] }}</td>
+											</tr>
+											<tr>
+												<td><b>Producer</b></td>
+												<td>{{ starwars[index]['producer'] }}</td>
+											</tr>
+											<tr>
+												<td><b>Release Date</b></td>
+												<td>{{ starwars[index]['release_date'] }}</td>
+											</tr>
+											<tr>
+												<td><b>Characters</b></td>
+												<td>
+													<span v-for="(character,x) in starwars[index]['characters']">
+													<span v-if="x>0">{{ ', ' }}</span>
+													{{ character }}
+													</span>
+												</td>
+											</tr>
+											<tr>
+												<td><b>Planets</b></td>
+												<td>
+													<span v-for="(planet,x) in starwars[index]['planets']">
+													<span v-if="x>0">{{ ', ' }}</span>
+													{{ planet }}
+													</span>
+												</td>
+											</tr>
+											<tr>
+												<td><b>Vehicles</b></td>
+												<td>
+													<span v-for="(vehicles,x) in starwars[index]['vehicles']">
+													<span v-if="x>0">{{ ', ' }}</span>
+													{{ vehicles }}
+													</span>
+												</td>
+											</tr>
+											<tr>
+												<td><b>Species</b></td>
+												<td>
+													<span v-for="(species,x) in starwars[index]['species']">
+													<span v-if="x>0">{{ ', ' }}</span>
+													{{ species }}
+													</span>
+												</td>
+											</tr>
+											<tr>
+												<td><b>Starships</b></td>
+												<td>
+													<span v-for="(starships,x) in starwars[index]['starships']">
+													<span v-if="x>0">{{ ', ' }}</span>
+													{{ starships }}
+													</span>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</p>
+						</div>
+					</div> <br>
+				</div> 	
+			</div>
+		</div>
+	</div>
+</body>
+	<script>
+		var vm = new Vue({
+			el: "#app",
+			data: {
+				starwars: {
+					starwars1: {
+						image: 'https://cdn1-production-images-kly.akamaized.net/ExEdl9CVZGSeq-YMRPvK_Ymtq0I=/640x360/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/869006/original/022368300_1430814591-jar-jar-binks45.jpg',
+						url: 'https://swapi.co/api/films/4/',
+						characters: [],
+						created: '',
+						director: '',
+						edited: '',
+						episode_id: '',
+						opening_crawl: '',
+						planets: [],
+						producer: '',
+						release_date: '',
+						species: [],
+						starships: [],
+						title: '',
+						vehicles: []
+					},
+					starwars2 : {
+						image: 'https://cdn0-production-images-kly.akamaized.net/Mazr_1HjlEWjfs6ZsO3xeDfSCCU=/640x360/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/1074418/original/055774100_1449132625-20151203-Star-Wars-google-2.jpg',
+						url: 'https://swapi.co/api/films/5/',
+						characters: [],
+						created: '',
+						director: '',
+						edited: '',
+						episode_id: '',
+						opening_crawl: '',
+						planets: [],
+						producer: '',
+						release_date: '',
+						species: [],
+						starships: [],
+						title: '',
+						vehicles: []
+					},
+					starwars3 : {
+						image: 'https://cdn0-production-images-kly.akamaized.net/pDWWnTpFhvIBo9V9a3le-InTne0=/640x360/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/1074419/original/055935400_1449132625-20151203-Star-Wars-google-3.jpg',
+						url: 'https://swapi.co/api/films/6/',
+						characters: [],
+						created: '',
+						director: '',
+						edited: '',
+						episode_id: '',
+						opening_crawl: '',
+						planets: [],
+						producer: '',
+						release_date: '',
+						species: [],
+						starships: [],
+						title: '',
+						vehicles: []
+					},
+					starwars4 : {
+						image: 'https://cdn0-production-images-kly.akamaized.net/IUgga9nQHU0XdZFFRn__seOETyg=/640x360/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/1074420/original/056088000_1449132625-20151203-Star-Wars-google-4.jpg',
+						url: 'https://swapi.co/api/films/1/',
+						characters: [],
+						created: '',
+						director: '',
+						edited: '',
+						episode_id: '',
+						opening_crawl: '',
+						planets: [],
+						producer: '',
+						release_date: '',
+						species: [],
+						starships: [],
+						title: '',
+						vehicles: []
+					},
+					starwars5: {
+						image: 'https://cdn1-production-images-kly.akamaized.net/ye3tFV53ALPR0d1F69_6Wt8wZsU=/640x360/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/1080904/original/079068100_1449749963-empire.jpg',
+						url: 'https://swapi.co/api/films/2/',
+						characters: [],
+						created: '',
+						director: '',
+						edited: '',
+						episode_id: '',
+						opening_crawl: '',
+						planets: [],
+						producer: '',
+						release_date: '',
+						species: [],
+						starships: [],
+						title: '',
+						vehicles: []
+					},
+					starwars6 : {
+						image: 'https://cdn0-production-images-kly.akamaized.net/gwy2JF8KC-XKZh8p8042f4UWA8Y=/640x360/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/1074422/original/057076000_1449132625-20151203-Star-Wars-google-6.jpg',
+						url: 'https://swapi.co/api/films/3/',
+						characters: [],
+						created: '',
+						director: '',
+						edited: '',
+						episode_id: '',
+						opening_crawl: '',
+						planets: [],
+						producer: '',
+						release_date: '',
+						species: [],
+						starships: [],
+						title: '',
+						vehicles: []
+					},
+					starwars7 : {
+						image: 'https://cdn1-production-images-kly.akamaized.net/itMqsxgZyHrrl_DwMZ6pYzW8h54=/640x360/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/926669/original/014111600_1436754017-starwars-1436594604244.cached.jpg',
+						url: 'https://swapi.co/api/films/7/',
+						characters: [],
+						created: '',
+						director: '',
+						edited: '',
+						episode_id: '',
+						opening_crawl: '',
+						planets: [],
+						producer: '',
+						release_date: '',
+						species: [],
+						starships: [],
+						title: '',
+						vehicles: []
+					},		
+				}
+			},
+			created() {
+				var people= []
+				var planets= []
+				var vehicles= []
+				var species= []
+				var starships= []
+				axios.get(this.starwars.starwars1.url)
+					.then(response => {
+						this.starwars.starwars1.title = response.data.title
+						this.starwars.starwars1.director = response.data.director
+						this.starwars.starwars1.episode_id = response.data.episode_id
+						this.starwars.starwars1.opening_crawl = response.data.opening_crawl
+						this.starwars.starwars1.release_date = response.data.release_date
+						this.starwars.starwars1.created = response.data.created
+						this.starwars.starwars1.edited = response.data.edited
+						this.starwars.starwars1.producer = response.data.producer
+					})
+					.catch(error => {
+
+					})
+				axios.get(this.starwars.starwars2.url)
+					.then(response => {
+						this.starwars.starwars2.title = response.data.title
+						this.starwars.starwars2.director = response.data.director
+						this.starwars.starwars2.episode_id = response.data.episode_id
+						this.starwars.starwars2.opening_crawl = response.data.opening_crawl
+						this.starwars.starwars2.release_date = response.data.release_date
+						this.starwars.starwars2.created = response.data.created
+						this.starwars.starwars2.edited = response.data.edited
+						this.starwars.starwars2.producer = response.data.producer
+					})
+					.catch(error => {
+
+					})
+				axios.get(this.starwars.starwars3.url)
+					.then(response => {
+						this.starwars.starwars3.title = response.data.title
+						this.starwars.starwars3.director = response.data.director
+						this.starwars.starwars3.episode_id = response.data.episode_id
+						this.starwars.starwars3.opening_crawl = response.data.opening_crawl
+						this.starwars.starwars3.release_date = response.data.release_date
+						this.starwars.starwars3.created = response.data.created
+						this.starwars.starwars3.edited = response.data.edited
+						this.starwars.starwars3.producer = response.data.producer
+					})
+					.catch(error => {
+
+					})
+				axios.get(this.starwars.starwars4.url)
+					.then(response => {
+						this.starwars.starwars4.title = response.data.title
+						this.starwars.starwars4.director = response.data.director
+						this.starwars.starwars4.episode_id = response.data.episode_id
+						this.starwars.starwars4.opening_crawl = response.data.opening_crawl
+						this.starwars.starwars4.release_date = response.data.release_date
+						this.starwars.starwars4.created = response.data.created
+						this.starwars.starwars4.edited = response.data.edited
+						this.starwars.starwars4.producer = response.data.producer
+					})
+					.catch(error => {
+
+					})
+				axios.get(this.starwars.starwars5.url)
+					.then(response => {
+						this.starwars.starwars5.title = response.data.title
+						this.starwars.starwars5.director = response.data.director
+						this.starwars.starwars5.episode_id = response.data.episode_id
+						this.starwars.starwars5.opening_crawl = response.data.opening_crawl
+						this.starwars.starwars5.release_date = response.data.release_date
+						this.starwars.starwars5.created = response.data.created
+						this.starwars.starwars5.edited = response.data.edited
+						this.starwars.starwars5.producer = response.data.producer
+					})
+					.catch(error => {
+
+					})
+				axios.get(this.starwars.starwars6.url)
+					.then(response => {
+						this.starwars.starwars6.title = response.data.title
+						this.starwars.starwars6.director = response.data.director
+						this.starwars.starwars6.episode_id = response.data.episode_id
+						this.starwars.starwars6.opening_crawl = response.data.opening_crawl
+						this.starwars.starwars6.release_date = response.data.release_date
+						this.starwars.starwars6.created = response.data.created
+						this.starwars.starwars6.edited = response.data.edited
+						this.starwars.starwars6.producer = response.data.producer
+					})
+					.catch(error => {
+
+					})
+				axios.get(this.starwars.starwars7.url)
+					.then(response => {
+						this.starwars.starwars7.title = response.data.title
+						this.starwars.starwars7.director = response.data.director
+						this.starwars.starwars7.episode_id = response.data.episode_id
+						this.starwars.starwars7.opening_crawl = response.data.opening_crawl
+						this.starwars.starwars7.release_date = response.data.release_date
+						this.starwars.starwars7.created = response.data.created
+						this.starwars.starwars7.edited = response.data.edited
+						this.starwars.starwars7.producer = response.data.producer
+					})
+					.catch(error => {
+
+					})
+
+				
+				for ( i=1; i<=88; i++) {
+					people[i] = 'https://swapi.co/api/people/'+i+'/',
+					axios.get(people[i])
+						.then(response => {
+							for  ( j=0;j<response.data.films.length;j++) {
+								if (this.starwars.starwars1.url == response.data.films[j]) {
+									this.starwars.starwars1.characters.push(response.data.name)
+								}
+								else if (this.starwars.starwars2.url == response.data.films[j]) {
+									this.starwars.starwars2.characters.push(response.data.name)
+								}
+								else if (this.starwars.starwars3.url == response.data.films[j]) {
+									this.starwars.starwars3.characters.push(response.data.name)
+								}
+								else if (this.starwars.starwars4.url == response.data.films[j]) {
+									this.starwars.starwars4.characters.push(response.data.name)
+								}
+								else if (this.starwars.starwars5.url == response.data.films[j]) {
+									this.starwars.starwars5.characters.push(response.data.name)
+								}
+								else if (this.starwars.starwars6.url == response.data.films[j]) {
+									this.starwars.starwars6.characters.push(response.data.name)
+								}
+								else if (this.starwars.starwars7.url == response.data.films[j]) {
+									this.starwars.starwars7.characters.push(response.data.name)
+								}
+							}
+							// console.log(response.data.name)
+							// console.log(response.data.films)
+						})
+						.catch(error => {
+
+						})	
+				}
+
+				for(i = 1; i <= 61; i++){
+					planets[i] = 'https://swapi.co/api/planets/'+i+'/',
+					axios.get(planets[i])
+						.then(response => {
+							for  ( j=0;j<response.data.films.length;j++) {
+								if (this.starwars.starwars1.url == response.data.films[j]) {
+									this.starwars.starwars1.planets.push(response.data.name)
+								}
+								else if (this.starwars.starwars2.url == response.data.films[j]) {
+									this.starwars.starwars2.planets.push(response.data.name)
+								}
+								else if (this.starwars.starwars3.url == response.data.films[j]) {
+									this.starwars.starwars3.planets.push(response.data.name)
+								}
+								else if (this.starwars.starwars4.url == response.data.films[j]) {
+									this.starwars.starwars4.planets.push(response.data.name)
+								}
+								else if (this.starwars.starwars5.url == response.data.films[j]) {
+									this.starwars.starwars5.planets.push(response.data.name)
+								}
+								else if (this.starwars.starwars6.url == response.data.films[j]) {
+									this.starwars.starwars6.planets.push(response.data.name)
+								}
+								else if (this.starwars.starwars7.url == response.data.films[j]) {
+									this.starwars.starwars7.planets.push(response.data.name)
+								}
+							}
+						})
+						.catch(error => {
+							
+						})
+				}
+				for(i = 1; i <= 39; i++){
+					vehicles[i] = 'https://swapi.co/api/vehicles/'+i+'/',
+					axios.get(vehicles[i])
+						.then(response => {
+							for  ( j=0;j<response.data.films.length;j++) {
+								if (this.starwars.starwars1.url == response.data.films[j]) {
+									this.starwars.starwars1.vehicles.push(response.data.name)
+								}
+								else if (this.starwars.starwars2.url == response.data.films[j]) {
+									this.starwars.starwars2.vehicles.push(response.data.name)
+								}
+								else if (this.starwars.starwars3.url == response.data.films[j]) {
+									this.starwars.starwars3.vehicles.push(response.data.name)
+								}
+								else if (this.starwars.starwars4.url == response.data.films[j]) {
+									this.starwars.starwars4.vehicles.push(response.data.name)
+								}
+								else if (this.starwars.starwars5.url == response.data.films[j]) {
+									this.starwars.starwars5.vehicles.push(response.data.name)
+								}
+								else if (this.starwars.starwars6.url == response.data.films[j]) {
+									this.starwars.starwars6.vehicles.push(response.data.name)
+								}
+								else if (this.starwars.starwars7.url == response.data.films[j]) {
+									this.starwars.starwars7.vehicles.push(response.data.name)
+								}
+							}
+						})
+						.catch(error => {
+							
+						})
+				}
+				for(i = 1; i <= 37; i++){
+					species[i] = 'https://swapi.co/api/species/'+i+'/',
+					axios.get(species[i])
+						.then(response => {
+							for  ( j=0;j<response.data.films.length;j++) {
+								if (this.starwars.starwars1.url == response.data.films[j]) {
+									this.starwars.starwars1.species.push(response.data.name)
+								}
+								else if (this.starwars.starwars2.url == response.data.films[j]) {
+									this.starwars.starwars2.species.push(response.data.name)
+								}
+								else if (this.starwars.starwars3.url == response.data.films[j]) {
+									this.starwars.starwars3.species.push(response.data.name)
+								}
+								else if (this.starwars.starwars4.url == response.data.films[j]) {
+									this.starwars.starwars4.species.push(response.data.name)
+								}
+								else if (this.starwars.starwars5.url == response.data.films[j]) {
+									this.starwars.starwars5.species.push(response.data.name)
+								}
+								else if (this.starwars.starwars6.url == response.data.films[j]) {
+									this.starwars.starwars6.species.push(response.data.name)
+								}
+								else if (this.starwars.starwars7.url == response.data.films[j]) {
+									this.starwars.starwars7.species.push(response.data.name)
+								}
+							}
+						})
+						.catch(error => {
+							
+						})
+				}
+				for(i = 1; i <= 37; i++){
+					starships[i] = 'https://swapi.co/api/starships/'+i+'/',
+					axios.get(starships[i])
+						.then(response => {
+							for  ( j=0;j<response.data.films.length;j++) {
+								if (this.starwars.starwars1.url == response.data.films[j]) {
+									this.starwars.starwars1.starships.push(response.data.name)
+								}
+								else if (this.starwars.starwars2.url == response.data.films[j]) {
+									this.starwars.starwars2.starships.push(response.data.name)
+								}
+								else if (this.starwars.starwars3.url == response.data.films[j]) {
+									this.starwars.starwars3.starships.push(response.data.name)
+								}
+								else if (this.starwars.starwars4.url == response.data.films[j]) {
+									this.starwars.starwars4.starships.push(response.data.name)
+								}
+								else if (this.starwars.starwars5.url == response.data.films[j]) {
+									this.starwars.starwars5.starships.push(response.data.name)
+								}
+								else if (this.starwars.starwars6.url == response.data.films[j]) {
+									this.starwars.starwars6.starships.push(response.data.name)
+								}
+								else if (this.starwars.starwars7.url == response.data.films[j]) {
+									this.starwars.starwars7.starships.push(response.data.name)
+								}
+							}
+						})
+						.catch(error => {
+							
+						})
+				}
+			}	
+		})
+	</script>
+	<style type="text/css">
+		a {
+		    color: #0a629b
+		}
+	</style>
+</html>
